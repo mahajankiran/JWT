@@ -16,7 +16,7 @@ mongoose.connect(process.env.LINK,{ useUnifiedTopology: true , useNewUrlParser: 
 })
 
 //Middleware
-app.use(express.json);
+app.use(express.json());
 
 //Route middleware
 app.use('/api/user',authRoute);
