@@ -1,17 +1,24 @@
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+//import routes
 
 const authRoute = require("./routes/auth");
+dotenv.config();
+
+
 
 //connection with database
-mongoose.connect('mongodb+srv://kiranm21:kiranm21@rest.nqiri.mongodb.net/authentication?retryWrites=true&w=majority',{ useUnifiedTopology: true , useNewUrlParser: true  },()=>{
+mongoose.connect(process.env.LINK,{ useUnifiedTopology: true , useNewUrlParser: true  },()=>{
     console.log('Connected to database');
     
 })
 
-//import routes
+//Middleware
+app.use(express.json);
 
+//Route middleware
 app.use('/api/user',authRoute);
 
 app.listen(3000, () => {
